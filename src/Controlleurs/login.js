@@ -616,25 +616,50 @@ function sendConfirmationEmail(name, email, password, res, userId) {
 }
 // Function to handle B2B signup
 async function signupb2b(req, res) {
-    const { name,email, phone, type, specialities, description } = req.body;
+    const { name, lastname, email, phone, type, speciality_id, description, pays, adresse, ville, gouvernorat, departement, region } = req.body;
 
     // Validate input
-    if (!name || !email || !phone || !type) {
+    if (!name || !email || !phone || !type || !lastname ){
         return res.status(400).json({ error: 'Tous les champs sont requis.' });
     }
 
+    console.log("bb");
     console.log("userId:", email);
     console.log("phone:", phone);
     console.log("name:", name);
-    console.log("specialities:", specialities);
+    console.log("speciality_id:", speciality_id);
     console.log("description:", description);
+    console.log("pays:", pays);
+    console.log("adresse:", adresse);
+    console.log("ville:", ville);
+    console.log("gouvernorat:", gouvernorat);
+    console.log("departement:", departement);
+    console.log("region:", region);
 
     // SQL query to insert registration request
-    const userSql = 'INSERT INTO doctor_request (name, email, phone_number, type, specialities, description) VALUES (?, ?, ?, ?, ?,?)';
+    const userSql = `
+        INSERT INTO doctor_requests_b2b 
+        (name, lastname, email, phone, type, speciality_id, description, pays, adresse, ville, gouvernorat, departement, region) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
 
     try {
         // Execute the insert query
-        const [userResults] = await db.execute(userSql, [name, email, phone, type, specialities || null, description || null]);
+        const [userResults] = await db.execute(userSql, [
+            name, 
+            lastname, 
+            email, 
+            phone, 
+            type, 
+            speciality_id, 
+            description ?? null, 
+            pays, 
+            adresse, 
+            ville, 
+            gouvernorat, 
+            departement, 
+            region
+        ]);
 
         // If insertion is successful
         return res.status(201).json({ message: 'Demande d\'inscription ajoutée avec succès.', id: userResults.insertId });

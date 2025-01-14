@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: 'P@ssw0rd1982',
+    password: 'StrongPassword123!',
     database: 'doctor-way-interactive',
     waitForConnections: true,
     connectionLimit: 10000000000000, // Maximum number of connections in the pool

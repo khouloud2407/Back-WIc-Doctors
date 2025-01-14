@@ -28,10 +28,10 @@ app.use(session({
     cookie: { secure: false } // Mettre à true si tu utilises HTTPS
 }));
 
-const sslOptions = {
-    key: fs.readFileSync('/etc/letsencrypt/live/wic-doctor.com/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/wic-doctor.com/fullchain.pem')
-};
+//const sslOptions = {
+  //  key: fs.readFileSync('/etc/letsencrypt/live/wic-doctor.com/privkey.pem'),
+    //cert: fs.readFileSync('/etc/letsencrypt/live/wic-doctor.com/fullchain.pem')
+//};
 
 // Initialiser Passport
 app.use(passport.initialize());
@@ -160,6 +160,6 @@ app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-https.createServer(sslOptions, app).listen(3004, () => {
-    console.log('Serveur HTTPS lancé sur le port 3002');
-});
+//https.createServer(sslOptions, app).listen(3004, () => {
+  //  console.log('Serveur HTTPS lancé sur le port 3002');
+//});

@@ -73,7 +73,7 @@ router.post('/ajouterrendezvousclinic',clinicController.insertAppointmentclinic)
 
 //router.post('/api/forgot-password',authController.forgs);
 //router.post('/api/reset-password',authController.rests);
-router.post('/api/logup',loginController.signuppatients);
+router.post('/api/logup',loginController.signuppatients); 
 router.post('/api/logupb2b',loginController.signupb2b);
 
 router.post('/api/infob2b',loginController.infob2b);
@@ -83,6 +83,7 @@ router.get('/api/assurances',loginController.getAssurances);
 router.get('/getdocbyid/:id',authController.getDoctorById);
 router.get('/getannuaire',authController.getAllAnnuaires);
 router.get('/getannuaireinfermiere',authController.getinfermiers);
+router.get('/getannuaireambulance' ,authController.getambulancess);
 
 
 router.put('/updateappointement/:appointment_id',authController.updateAppointment);
